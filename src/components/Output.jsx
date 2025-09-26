@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const Output = ({ editorRef, language}) => {
     const [output, setOutput] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const runCode = async () => {
         if(!editorRef.current){
@@ -12,10 +14,14 @@ const Output = ({ editorRef, language}) => {
         const sourceCode = editorRef.current.getValue();
         if (!sourceCode) return;
         try {
+            setIsLoading(true);
             const {run:result} = await executeCode(language, sourceCode);
-            setOutput(result.output);
+            setOutput(result.output.split('\n'));
+            result.stderr ? setIsError(true) : setIsError(false);
         } catch (error) {
             console.error("Error executing code:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -25,12 +31,13 @@ const Output = ({ editorRef, language}) => {
             <button
                 variant="outline"
                 className="border bg-gray-700 hover:bg-gray-900 text-white border-gray-900 rounded p-2 ml-2 mb-1 cursor-pointer"
+                isLoading={isLoading}
                 onClick={runCode}
             >
                 Run Code
             </button>
-            <div className=" mt-0 p-2 h-[90vh] overflow-y-auto border border-gray-900 rounded">
-                {output ? output : 'Click "Run Code" to see the output here'}
+            <div className={`mt-0 p-2 h-[90vh] overflow-y-auto border rounded ${isError ? "border-red-700 text-red-800" : "border-gray-900"}`}>
+                {output ? output.map((line, index) => <div key={index}>{line}</div>) : 'Click "Run Code" to see the output here'}
             </div>
         </div>
     );
