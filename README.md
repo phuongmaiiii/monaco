@@ -1,16 +1,11 @@
-# React + Vite
+# Monaco
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Build an in-browser code editor that supports multiple languages! I use the Monaco React library for the code editor, Tailwind to style my app, and the Piston API to execute code.
 
-Currently, two official plugins are available:
+## Demo 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can view a live demo of the app: [here](https://phuongmaiiii.github.io/monaco/) 
 
-## React Compiler
+## Screenshots 
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="2772" height="1476" alt="image" src="https://github.com/user-attachments/assets/33a73d78-bb21-4c67-afd0-f1b0d134282d" />
